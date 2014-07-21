@@ -47,12 +47,13 @@ mkrepo() {
 
 # Pull all remote Git branches
 updateAllBranches() {
+	git config --global push.default tracking
 	git branch -a | grep -v HEAD | perl -ne 'chomp($_); s|^\*?\s*||; if (m|(.+)/(.+)| && not $d{$2}) {print qq(git branch --track $2 $1/$2\n)} else {$d{$_}=1}' | csh -xfs
 }
 
 # Update all submodules (including nested)
 updateAllSubs() {
-	git submodule foreach --recursive git submodule update --init 
+	git submodule update --init --recursive
 }
 
 # Flush DNS
