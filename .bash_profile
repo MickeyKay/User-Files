@@ -13,6 +13,10 @@ alias host="sudo pico  /private/etc/hosts"
 alias sshm="ssh mickeykay@mightyminnow.com"
 
 # Commands
+hosts() {
+	sudo nano -e /private/etc/hosts
+}
+
 showFiles() {
 	defaults write com.apple.Finder AppleShowAllFiles YES
 	killall Finder
